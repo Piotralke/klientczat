@@ -10,8 +10,9 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface PersonResource {
-    @GET("/people/{id}")
-    Call<Person> login(@Path("id") String login);
+
+    @GET("/people/{login}")
+    Call<Person> login(@Path("login") String login);
 
     @POST("/people")
     Call<ResponseEntity<?>> register(@RequestBody Person newPerson);

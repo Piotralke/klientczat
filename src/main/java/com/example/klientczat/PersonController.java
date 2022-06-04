@@ -26,13 +26,15 @@ public class PersonController implements Callback<Person> {
     }
 
 
-    static Person login(String login) throws IOException{
+    static Person login(String login, String password) throws IOException{
         Call<Person> temp = resource.login(login);
         Response<Person> response = temp.execute();
         if(response.isSuccessful()){
             Person temp2 = response.body();
-            System.out.println(response.body().toString());
-            return  temp2;
+            if(temp2.getPassword().equals(password))
+            {
+                return  temp2;
+            }
         }
         return null;
     }
