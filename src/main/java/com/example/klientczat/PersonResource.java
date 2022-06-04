@@ -11,7 +11,7 @@ import retrofit2.http.Path;
 
 public interface PersonResource {
     @GET("/people/{id}")
-    Call<CollectionModel<EntityModel<Person>>> login(@Path("id") String login);
+    Call<EntityModel<Person>> login(@Path("id") String login);
 
     @POST("/people")
     Call<ResponseEntity<?>> register(@RequestBody Person newPerson);

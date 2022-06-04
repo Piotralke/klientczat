@@ -3,7 +3,7 @@ package com.example.klientczat;
 import java.util.Objects;
 
 
-class Person {
+public class Person {
 
     public Long id;
     public String firstName;

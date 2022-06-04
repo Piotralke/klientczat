@@ -1,7 +1,7 @@
 module com.example.klientczat {
     requires javafx.controls;
     requires javafx.fxml;
-    requires java.sql;
+
     requires spring.hateoas;
     requires spring.web;
     requires com.google.gson;
@@ -12,3 +12,4 @@ module com.example.klientczat {
     opens com.example.klientczat to javafx.fxml;
     exports com.example.klientczat;
 }
+

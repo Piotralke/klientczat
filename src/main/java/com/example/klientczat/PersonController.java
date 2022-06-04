@@ -13,8 +13,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-class PersonController implements Callback<CollectionModel<EntityModel<Person>>> {
-    PersonResource resource;
+public class PersonController implements Callback<CollectionModel<EntityModel<Person>>> {
+    static PersonResource resource;
     static final String BASE_URL = "http://localhost:8080/";
     private Retrofit retrofit;
     public void start(){
@@ -26,12 +26,12 @@ class PersonController implements Callback<CollectionModel<EntityModel<Person>>>
     }
 
 
-    EntityModel<Person> login(String login) throws IOException{
-        Call<CollectionModel<EntityModel<Person>>> temp = resource.login(login);
-        Response<CollectionModel<EntityModel<Person>>> response = temp.execute();
+    static Person login(String login) throws IOException{
+        Call<EntityModel<Person>> temp = resource.login(login);
+        Response<EntityModel<Person>> response = temp.execute();
         if(response.isSuccessful()){
-            CollectionModel<EntityModel<Person>> temp2 = response.body();
-            return  temp2.getContent().stream().findFirst().get();
+            EntityModel<Person> temp2 = response.body();
+            return  temp2.getContent();
         }
         return null;
     }
