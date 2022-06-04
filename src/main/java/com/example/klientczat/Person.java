@@ -1,14 +1,26 @@
 package com.example.klientczat;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Objects;
 
 
 public class Person {
-
+    @SerializedName("id")
+    @Expose
     public Long id;
+    @SerializedName("firstName")
+    @Expose
     public String firstName;
+    @SerializedName("lastName")
+    @Expose
     public String lastName;
+    @SerializedName("login")
+    @Expose
     public String login;
+    @SerializedName("password")
+    @Expose
     public String password;
 
     public Person() {}

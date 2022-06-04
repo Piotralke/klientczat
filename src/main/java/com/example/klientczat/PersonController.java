@@ -13,7 +13,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class PersonController implements Callback<CollectionModel<EntityModel<Person>>> {
+public class PersonController implements Callback<Person> {
     static PersonResource resource;
     static final String BASE_URL = "http://localhost:8080/";
     private Retrofit retrofit;
@@ -27,25 +27,27 @@ public class PersonController implements Callback<CollectionModel<EntityModel<Pe
 
 
     static Person login(String login) throws IOException{
-        Call<EntityModel<Person>> temp = resource.login(login);
-        Response<EntityModel<Person>> response = temp.execute();
+        Call<Person> temp = resource.login(login);
+        Response<Person> response = temp.execute();
         if(response.isSuccessful()){
-            EntityModel<Person> temp2 = response.body();
-            return  temp2.getContent();
+            Person temp2 = response.body();
+            System.out.println(response.body().toString());
+            return  temp2;
         }
         return null;
     }
     @Override
-    public void onResponse(Call<CollectionModel<EntityModel<Person>>> call, Response<CollectionModel<EntityModel<Person>>> response) {
+    public void onResponse(Call<Person> call, Response<Person> response) {
         if(response.isSuccessful()) {
-            CollectionModel<EntityModel<Person>> changesList = response.body();
-            changesList.forEach(change -> System.out.println(change.getContent().getName()));
+            Person changesList = response.body();
+            System.out.println(changesList.getName());
+            //changesList.forEach(change -> System.out.println(change.getContent().getName()));
         } else {
             System.out.println(response.errorBody());
         }
     }
     @Override
-    public void onFailure(Call<CollectionModel<EntityModel<Person>>> call, Throwable t) {
+    public void onFailure(Call<Person> call, Throwable t) {
         t.printStackTrace();
     }
 }
