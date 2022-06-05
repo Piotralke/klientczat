@@ -1,19 +1,23 @@
 package com.example.klientczat;
 
-import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.EntityModel;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
 import retrofit2.Call;
-import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.Path;
+import retrofit2.http.*;
 
 public interface PersonResource {
 
     @GET("/people/{login}")
     Call<Person> login(@Path("login") String login);
 
+    @GET("/people/findById/{id}")
+    Call<Person> findById(@Path("id") Long id);
+
     @POST("/people")
-    Call<ResponseEntity<?>> register(@RequestBody Person newPerson);
+    Call<Person> register(@Body Person newPerson);
+
+    @PUT("/people/{id}")
+    Call<Person> change(@Body Person newPerson, @Path("id") Long id);
+
+    @DELETE("/people/{id}")
+    Call<Person> deleteById(@Path("id") Long id);
+
 }

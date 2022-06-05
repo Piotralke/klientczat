@@ -8,7 +8,7 @@
       <ToolBar prefHeight="40.0" prefWidth="200.0">
         <items>
           <Button mnemonicParsing="false" onAction="#logOut" text="Wyloguj" />
-            <Button mnemonicParsing="false" text="Ustawienia" />
+            <Button mnemonicParsing="false" onAction="#change" text="Ustawienia" />
             <Label fx:id="nameLabel" text="" />
         </items>
       </ToolBar>

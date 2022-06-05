@@ -27,6 +27,7 @@ public class ChatController {
         messageController.start();
     }
     public Person user;
+    public PersonController personController;
 
     private Stage stage;
     private Scene scene;
@@ -35,7 +36,63 @@ public class ChatController {
     private Label nameLabel;
     @FXML
     private ListView list;
-    public void init(Person person) throws IOException {
+    @FXML
+    private TextField newConvText;
+
+    static public boolean refreshConv;
+    private int convSize=0;
+    void refreshChat() {
+
+        Thread t1 = new Thread() {
+            @Override
+            public void run() {
+                while (refreshConv) {
+                    try {
+                        sleep(500);
+                        List<Conversation> listConversations = ConversationController.getList(user.getId());
+                        if (listConversations != null) {
+                            if (listConversations.size() != convSize) {
+                                convSize = listConversations.size();
+                                Platform.runLater(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        list.getItems().clear();
+                                        for (Conversation conversation : listConversations) {
+                                            if(conversation.getFirstId().equals(user.getId())){
+                                                try {
+                                                    list.getItems().add(conversation.getId()+" "+ personController.findById(conversation.secondId).getName());
+                                                } catch (IOException e) {
+                                                    throw new RuntimeException(e);
+                                                }
+                                            }else{
+                                                try {
+                                                    list.getItems().add(conversation.getId()+" "+ personController.findById(conversation.firstId).getName());
+                                                } catch (IOException e) {
+                                                    throw new RuntimeException(e);
+                                                }
+                                            }
+                                        }
+                                    }
+                                });
+
+                            }
+                        }
+                    }catch(IOException e){
+                        throw new RuntimeException(e);
+                    }catch (NullPointerException exception){
+
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                }
+
+            }
+        };
+        t1.start();
+    }
+
+    public void init(Person person, PersonController personController) throws IOException {
         nameLabel.setText(person.getName());
         this.user=person;
         this.personController=personController;
@@ -76,6 +133,30 @@ public class ChatController {
             refreshConv=true;
             convSize=conversationList.size();
             refreshChat();
+        }
+    }
+
+    @FXML
+    public void change (Event event) throws IOException{
+        refreshConv=false;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("change.fxml"));
+        root=loader.load();
+        ChangeController changeController = loader. getController();
+        changeController.init(this.user, this.personController,messageController, ConversationController);
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
+    public void addConv() throws IOException {
+        Person tmp = personController.findByLogin(newConvText.getText());
+        if(tmp!=null){
+            Conversation conversation = new Conversation(this.user.getId(), (tmp.getId()));
+                ConversationController.addConversation(conversation);
+            if(convSize==0){
+                refreshChat();
+            }
         }
     }
 

@@ -10,6 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ConversationController implements Callback<ListConversation> {
@@ -39,21 +40,39 @@ public class ConversationController implements Callback<ListConversation> {
 
             return null;
         }
-        return null;
+
+    static Conversation addConversation(Conversation conversation) throws IOException {
+        Call<Conversation> retrofitCall = resource.addConversation(conversation);
+        Response<Conversation> response = retrofitCall.execute();
+        if (!response.isSuccessful()) {
+            throw new IOException("Unknown error");
+        }
+
+        return response.body();
+    }
+
+    static Conversation deleteConversations(Long id) throws IOException {
+        Call<Conversation> retrofitCall = resource.delete(id);
+        Response<Conversation> response = retrofitCall.execute();
+        if (!response.isSuccessful()) {
+            throw new IOException("Unknown error");
+        }
+
+        return response.body();
     }
 
     @Override
-    public void onResponse(Call<ListResponse> call, Response<ListResponse> response) {
+    public void onResponse(Call<ListConversation> call, Response<ListConversation> response) {
         if(response.isSuccessful()) {
-            ListResponse changesList = response.body();
-            //System.out.println(changesList.getName());
-            changesList.getConversationList().forEach(change -> System.out.println(change.getFirstId()));
+            ListConversation changesList = response.body();
+
+            changesList.getEmbedded().getConversationList().forEach(change -> System.out.println(change.getFirstId()));
         } else {
             System.out.println(response.errorBody());
         }
     }
     @Override
-    public void onFailure(Call<ListResponse> call, Throwable t) {
+    public void onFailure(Call<ListConversation> call, Throwable t) {
         t.printStackTrace();
     }
 }

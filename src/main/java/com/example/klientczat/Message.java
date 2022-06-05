@@ -3,6 +3,7 @@ package com.example.klientczat;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Message {
@@ -18,6 +19,7 @@ public class Message {
     @SerializedName("senderId")
     @Expose
     public Long senderId;
+
     public Message() {}
 
     Message(Long conversationId,Long senderId, String text) {

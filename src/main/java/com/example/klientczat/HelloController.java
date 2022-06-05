@@ -34,7 +34,7 @@ public class HelloController {
     @FXML
     void login(ActionEvent event) throws IOException{
         Person person = PersonController.login(loginText.getText(),passwordText.getText());
-
+        //PersonController.createRepository();
        // chatController.user = PersonController.login(loginText.getText(),passwordText.getText());
         if(person!=null){
             errorLabel.setText("");
@@ -51,6 +51,18 @@ public class HelloController {
         }else{
             errorLabel.setText("Niepoprawne dane dostępowe");
         }
+    }
+
+    @FXML
+    void register(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("register.fxml"));
+        root=loader.load();
+        RegisterController registerController = loader.getController();
+        registerController.personController=personController;
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 }

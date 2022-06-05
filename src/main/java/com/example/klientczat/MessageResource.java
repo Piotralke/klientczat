@@ -1,11 +1,16 @@
 package com.example.klientczat;
 
 import retrofit2.Call;
-import retrofit2.http.GET;
-import retrofit2.http.Path;
+import retrofit2.http.*;
 
 public interface MessageResource {
 
-    @GET("/people/{id}/conversations/{convId}/messages")
-    Call<ListResponse> getList(@Path("id") Long id);
+    @GET("/conversations/{convId}/messages")
+    Call<MessageList> getList(@Path("convId") Long id);
+
+    @POST("/conversations/{convId}/messages")
+    Call<Message> sendMessage(@Body Message newMessage, @Path("convId") Long id);
+
+    @DELETE("/conversations/{convId}/messages")
+    Call<Message> deleteMessages(@Path("convId") Long id);
 }

@@ -7,6 +7,7 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.springframework.web.bind.annotation.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -39,6 +40,58 @@ public class PersonController implements Callback<Person> {
         }
         return null;
     }
+
+    static Person findByLogin(String login) throws IOException{
+        Call<Person> temp = resource.login(login);
+        Response<Person> response = temp.execute();
+        if(response.isSuccessful()){
+            Person temp2 = response.body();
+                return  temp2;
+        }
+        return null;
+    }
+
+    static Person findById(Long id) throws IOException{
+        Call<Person> temp = resource.findById(id);
+        Response<Person> response = temp.execute();
+        if(response.isSuccessful()){
+            System.out.println(response.body().toString());
+            Person temp2 = response.body();
+                return  temp2;
+        }
+        return null;
+    }
+
+    static Person register(Person person) throws IOException {
+        Call<Person> retrofitCall = resource.register(person);
+        Response<Person> response = retrofitCall.execute();
+        if (!response.isSuccessful()) {
+            throw new IOException("Unknown error");
+        }
+
+        return response.body();
+    }
+
+    static Person change(Person person) throws IOException{
+        Call<Person> retrofitCall = resource.change(person,person.getId());
+        Response<Person> response = retrofitCall.execute();
+        if (!response.isSuccessful()) {
+            throw new IOException("Unknown error");
+        }
+
+        return response.body();
+    }
+
+    static Person delete(Long id) throws IOException {
+        Call<Person> retrofitCall = resource.deleteById(id);
+        Response<Person> response = retrofitCall.execute();
+        if (!response.isSuccessful()) {
+            throw new IOException("Unknown error");
+        }
+
+        return response.body();
+    }
+
     @Override
     public void onResponse(Call<Person> call, Response<Person> response) {
         if(response.isSuccessful()) {
