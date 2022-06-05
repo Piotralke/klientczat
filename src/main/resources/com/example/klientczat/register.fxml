@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.klientczat.RegisterController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.klientczat.RegisterController">
    <children>
       <ToolBar prefHeight="40.0" prefWidth="200.0">
         <items>
@@ -24,8 +24,8 @@
             <Label layoutX="221.0" layoutY="110.0" text="Hasło" />
             <Label layoutX="31.0" layoutY="182.0" text="Imię" />
             <Label layoutX="221.0" layoutY="182.0" text="Nazwisko" />
-            <Button layoutX="155.0" layoutY="271.0" mnemonicParsing="false" onAction="#postRegister" text="Zarejestruj się" />
-            <Label fx:id="errorLabel" layoutX="186.0" layoutY="240.0" textFill="RED" />
+            <Button fx:id="button" layoutX="155.0" layoutY="271.0" mnemonicParsing="false" onAction="#postRegister" text="Zarejestruj się" />
+            <Label fx:id="errorLabel" layoutX="130.0" layoutY="240.0" textFill="RED" />
          </children>
       </AnchorPane>
    </children>

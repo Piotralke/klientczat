@@ -43,14 +43,17 @@ public class ChangeController {
         surnameText.setText(person.getLastName());
     }
 
-    @FXML void putChange(Event event) {
-        Person person2 = new Person(nameText.getText(),surnameText.getText(),loginText.getText(),passwordText.getText());
-        person2.setId(person.getId());
-        this.person=person2;
-        try {
+    @FXML
+    public void putChange(Event event) throws IOException  {
+        if(personController.findByLogin(loginText.getText())==null){
+            errorLabel.setText("");
+            Person person2 = new Person(nameText.getText(),surnameText.getText(),loginText.getText(),passwordText.getText());
+            person2.setId(person.getId());
+            this.person=person2;
             personController.change(person);
-        } catch (IOException e) {
-            errorLabel.setText("Taki login juz istnieje");
+            goBack(event);
+        }else{
+            errorLabel.setText("Uzytkownik o takim loginie juz istnieje!");
         }
     }
 

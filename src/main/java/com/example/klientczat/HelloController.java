@@ -29,13 +29,10 @@ public class HelloController {
     private PasswordField passwordText;
     @FXML
     private Label errorLabel;
-   // private Person person;
 
     @FXML
     void login(ActionEvent event) throws IOException{
         Person person = PersonController.login(loginText.getText(),passwordText.getText());
-        //PersonController.createRepository();
-       // chatController.user = PersonController.login(loginText.getText(),passwordText.getText());
         if(person!=null){
             errorLabel.setText("");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("chat.fxml"));
@@ -59,6 +56,7 @@ public class HelloController {
         root=loader.load();
         RegisterController registerController = loader.getController();
         registerController.personController=personController;
+        registerController.init();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

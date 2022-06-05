@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -38,6 +39,10 @@ public class ChatController {
     private ListView list;
     @FXML
     private TextField newConvText;
+    @FXML
+    private Label errorLabel;
+    @FXML
+    private Button addButton;
 
     static public boolean refreshConv;
     private int convSize=0;
@@ -94,6 +99,10 @@ public class ChatController {
 
     public void init(Person person, PersonController personController) throws IOException {
         nameLabel.setText(person.getName());
+        addButton.setDisable(true);
+        newConvText.textProperty().addListener((observable, oldValue, newValue) -> {
+            addButton.setDisable(newValue.trim().isEmpty());
+        });
         this.user=person;
         this.personController=personController;
         List<Conversation> conversationList = ConversationController.getList(person.getId());
@@ -157,6 +166,8 @@ public class ChatController {
             if(convSize==0){
                 refreshChat();
             }
+        }else{
+            errorLabel.setText("Nie znaleziono");
         }
     }
 
