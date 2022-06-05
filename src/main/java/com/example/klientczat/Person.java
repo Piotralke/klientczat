@@ -1,12 +1,12 @@
+
 package com.example.klientczat;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.Objects;
-
+import org.springframework.hateoas.Links;
 
 public class Person {
+
     @SerializedName("id")
     @Expose
     public Long id;
@@ -22,45 +22,41 @@ public class Person {
     @SerializedName("password")
     @Expose
     public String password;
+    @SerializedName("name")
+    @Expose
+    public String name;
+    @SerializedName("_links")
+    @Expose
+    public Links links;
 
-    public Person() {}
+    public Person(){};
 
     public Person(String firstName, String lastName, String login, String password) {
-
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.login = login;
-        this.password = password;
-    }
-
-    public String getName() {
-        return this.firstName + " " + this.lastName;
-    }
-
-    public void setName(String name) {
-        String[] parts = name.split(" ");
-        this.firstName = parts[0];
-        this.lastName = parts[1];
+        this.firstName=firstName;
+        this.lastName=lastName;
+        this.login=login;
+        this.password=password;
+        this.name = firstName + " " + lastName;
     }
 
     public Long getId() {
-        return this.id;
-    }
-
-    public String getFirstName() {
-        return this.firstName;
-    }
-
-    public String getLastName() {
-        return this.lastName;
+        return id;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public void setLastName(String lastName) {
@@ -83,24 +79,21 @@ public class Person {
         this.password = password;
     }
 
-    @Override
-    public boolean equals(Object o) {
-
-        if (this == o)
-            return true;
-        if (!(o instanceof Person))
-            return false;
-        Person person = (Person) o;
-        return Objects.equals(this.id, person.id) && Objects.equals(this.firstName, person.firstName)
-                && Objects.equals(this.lastName, person.lastName) && Objects.equals(this.login, person.login)
-                && Objects.equals(this.password, person.password);
+    public String getName() {
+        return name;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(this.id, this.firstName, this.lastName, this.login, this.password);
+    public void setName(String name) {
+        this.name = name;
     }
 
+    public Links getLinks() {
+        return links;
+    }
+
+    public void setLinks(Links links) {
+        this.links = links;
+    }
     @Override
     public String toString() {
         return "Person{" + "id=" + this.id + ", firstName='" + this.firstName + '\'' + ", lastName='" + this.lastName

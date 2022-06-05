@@ -41,7 +41,7 @@ public class HelloController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("chat.fxml"));
             root=loader.load();
             ChatController chatController = loader.getController();
-            chatController.init(person);
+            chatController.init(person,personController);
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);

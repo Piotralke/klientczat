@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConversationController implements Callback<ListResponse> {
+public class ConversationController implements Callback<ListConversation> {
 
     static ConversationResource resource;
     static final String BASE_URL = "http://localhost:8080/";
@@ -27,17 +27,17 @@ public class ConversationController implements Callback<ListResponse> {
 
     static List<Conversation> getList(Long id) throws  IOException {
         List<Conversation> result = new ArrayList<>();
-        Call<ListResponse> temp = resource.getList(id);
-
-        Response<ListResponse> response = temp.execute();
+        Call<ListConversation> temp = resource.getList(id);
+        Response<ListConversation> response = temp.execute();
         if(response.isSuccessful()){
-            System.out.println(response.body());
-            for(Conversation conversation : response.body().getConversationList()){
-                result.add(conversation);
-            }
-           // List<Conversation> result = response.body().getConversationList();
+            ListConversation temp2 = response.body();
+            result = response.body().getEmbedded().getConversationList();
 
             return result;
+        }
+
+
+            return null;
         }
         return null;
     }

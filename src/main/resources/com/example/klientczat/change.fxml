@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.klientczat.ChangeController">
+   <children>
+      <ToolBar prefHeight="40.0" prefWidth="200.0">
+        <items>
+          <Button mnemonicParsing="false" onAction="#goBack" text="Powrót" />
+        </items>
+      </ToolBar>
+      <AnchorPane prefHeight="397.0" prefWidth="400.0">
+         <children>
+            <TextField fx:id="loginText" layoutX="31.0" layoutY="127.0" />
+            <TextField fx:id="nameText" layoutX="31.0" layoutY="199.0" />
+            <TextField fx:id="passwordText" layoutX="221.0" layoutY="127.0" />
+            <TextField fx:id="surnameText" layoutX="221.0" layoutY="199.0" />
+            <Label layoutX="31.0" layoutY="110.0" text="Login" />
+            <Label layoutX="221.0" layoutY="110.0" text="Hasło" />
+            <Label layoutX="31.0" layoutY="182.0" text="Imię" />
+            <Label layoutX="221.0" layoutY="182.0" text="Nazwisko" />
+            <Button layoutX="155.0" layoutY="271.0" mnemonicParsing="false" onAction="#putChange" text="Zmień dane" />
+            <Label fx:id="errorLabel" layoutX="186.0" layoutY="240.0" textFill="RED" />
+            <Button layoutX="161.0" layoutY="358.0" mnemonicParsing="false" text="Usuń konto" onAction="#deleteUser" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

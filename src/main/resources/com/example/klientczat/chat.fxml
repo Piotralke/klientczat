@@ -13,5 +13,21 @@
         </items>
       </ToolBar>
       <ListView fx:id="list" prefHeight="547.0" prefWidth="400.0" />
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <AnchorPane prefHeight="59.0" prefWidth="278.0">
+               <children>
+                  <TextField fx:id="newConvText" layoutX="26.0" layoutY="23.0" prefHeight="25.0" prefWidth="233.0" />
+                  <Label layoutX="26.0" layoutY="6.0" text="Nowa konwersacja z:" />
+                  <Label fx:id="errorLabel" layoutX="143.0" layoutY="6.0" textFill="RED" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button layoutX="45.0" layoutY="20.0" mnemonicParsing="false" onAction="#addConv" text="Dodaj" />
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
    </children>
 </VBox>

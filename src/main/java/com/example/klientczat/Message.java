@@ -12,9 +12,6 @@ public class Message {
     @SerializedName("text")
     @Expose
     public String text;
-    @SerializedName("status")
-    @Expose
-    public Status status;
     @SerializedName("conversationId")
     @Expose
     public Long conversationId;
@@ -23,11 +20,10 @@ public class Message {
     public Long senderId;
     public Message() {}
 
-    Message(Long conversationId,Long senderId, String text, Status status) {
+    Message(Long conversationId,Long senderId, String text) {
         this.conversationId = conversationId;
         this.senderId = senderId;
         this.text = text;
-        this.status = status;
     }
 
     public Long getConversationId() {
@@ -54,9 +50,6 @@ public class Message {
         return this.text;
     }
 
-    public Status getStatus() {
-        return this.status;
-    }
 
     public void setId(Long id) {
         this.id = id;
@@ -64,10 +57,6 @@ public class Message {
 
     public void setText(String text) {
         this.text = text;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
     }
 
     @Override
@@ -79,17 +68,16 @@ public class Message {
             return false;
         Message message = (Message) o;
         return Objects.equals(this.id, message.id) && Objects.equals(this.conversationId,message.conversationId)
-                && Objects.equals(this.text, message.text)
-                && this.status == message.status;
+                && Objects.equals(this.text, message.text);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.id, this.conversationId, this.text, this.status);
+        return Objects.hash(this.id, this.conversationId, this.text);
     }
 
     @Override
     public String toString() {
-        return "Message{" + "id=" + this.id + ", conversationId=" + this.conversationId + ", senderID=" + this.senderId +  ", text='" + this.text + '\'' + ", status=" + this.status + '}';
+        return "Message{" + "id=" + this.id + ", conversationId=" + this.conversationId + ", senderID=" + this.senderId +  ", text='" + this.text +  '}';
     }
 }

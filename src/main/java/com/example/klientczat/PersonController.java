@@ -2,6 +2,7 @@ package com.example.klientczat;
 
 import java.io.IOException;
 
+
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import com.google.gson.Gson;

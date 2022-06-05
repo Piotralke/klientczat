@@ -8,6 +8,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static com.example.klientczat.ChatController.refreshConv;
+import static com.example.klientczat.ConvController.refresh;
+
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
@@ -19,6 +22,12 @@ public class HelloApplication extends Application {
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
+    }
+
+    @Override
+    public void stop(){
+        refresh=false;
+        refreshConv=false;
     }
 
     public static void main(String[] args) {
