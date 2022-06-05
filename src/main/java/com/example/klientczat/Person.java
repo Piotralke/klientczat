@@ -25,9 +25,6 @@ public class Person {
     @SerializedName("name")
     @Expose
     public String name;
-    @SerializedName("_links")
-    @Expose
-    public Links links;
 
     public Person(){};
 
@@ -87,13 +84,6 @@ public class Person {
         this.name = name;
     }
 
-    public Links getLinks() {
-        return links;
-    }
-
-    public void setLinks(Links links) {
-        this.links = links;
-    }
     @Override
     public String toString() {
         return "Person{" + "id=" + this.id + ", firstName='" + this.firstName + '\'' + ", lastName='" + this.lastName

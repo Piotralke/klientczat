@@ -55,7 +55,6 @@ public class PersonController implements Callback<Person> {
         Call<Person> temp = resource.findById(id);
         Response<Person> response = temp.execute();
         if(response.isSuccessful()){
-            System.out.println(response.body().toString());
             Person temp2 = response.body();
                 return  temp2;
         }
@@ -96,8 +95,7 @@ public class PersonController implements Callback<Person> {
     public void onResponse(Call<Person> call, Response<Person> response) {
         if(response.isSuccessful()) {
             Person changesList = response.body();
-            System.out.println(changesList.getName());
-            //changesList.forEach(change -> System.out.println(change.getContent().getName()));
+
         } else {
             System.out.println(response.errorBody());
         }

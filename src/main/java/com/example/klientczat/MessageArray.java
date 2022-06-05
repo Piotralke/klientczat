@@ -28,28 +28,6 @@ public class MessageArray {
         this.messageList = messageList;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(Embedded.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("messageList");
-        sb.append('=');
-        sb.append(((this.messageList == null)?"<null>":this.messageList));
-        sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
-        } else {
-            sb.append(']');
-        }
-        return sb.toString();
-    }
-
-    @Override
-    public int hashCode() {
-        int result = 1;
-        result = ((result* 31)+((this.messageList == null)? 0 :this.messageList.hashCode()));
-        return result;
-    }
 
 
 

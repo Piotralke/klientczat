@@ -25,8 +25,8 @@
             <Label layoutX="31.0" layoutY="182.0" text="Imię" />
             <Label layoutX="221.0" layoutY="182.0" text="Nazwisko" />
             <Button layoutX="155.0" layoutY="271.0" mnemonicParsing="false" onAction="#putChange" text="Zmień dane" />
-            <Label fx:id="errorLabel" layoutX="186.0" layoutY="240.0" textFill="RED" />
-            <Button layoutX="161.0" layoutY="358.0" mnemonicParsing="false" text="Usuń konto" onAction="#deleteUser" />
+            <Label fx:id="errorLabel" layoutX="130.0" layoutY="240.0" textFill="RED" />
+            <Button layoutX="161.0" layoutY="358.0" mnemonicParsing="false" onAction="#deleteUser" text="Usuń konto" />
          </children>
       </AnchorPane>
    </children>

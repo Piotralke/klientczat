@@ -63,7 +63,6 @@ public class MessageController implements Callback<MessageList> {
     public void onResponse(Call<MessageList> call, Response<MessageList> response) {
         if(response.isSuccessful()) {
             MessageList changesList = response.body();
-            changesList.getMessageArray().getMessageArray().forEach(change -> System.out.println("chuj"));
 
         } else {
             System.out.println(response.errorBody());
